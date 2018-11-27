@@ -1,2 +1,1 @@
-# ArquiteturaSW
-Projetos construídos e executados na aula de arquitetura de SW
+# Jogos-de-Guerra - THIS IS SPARTA!
