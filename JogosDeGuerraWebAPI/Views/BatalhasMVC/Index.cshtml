@@ -1,0 +1,139 @@
+﻿@model IEnumerable<JogosDeGuerraModel.Batalha>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    @*Header*@
+    <tr>
+        <th>
+            Exercito Branco
+        </th>
+        <th>
+            Exercito Preto
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Tabuleiro.Id)
+            </th>*@
+        <th>
+            Turno
+        </th>
+        <th>
+            Vencedor
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExercitoBranco.Usuario.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExercitoPreto.Usuario.Email)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Tabuleiro.Id)
+                </td>*@
+            <td>
+                @if (item.Turno == null)
+                {
+                    @Html.Label("-")
+                }
+                else if (item.TurnoId == item.ExercitoBrancoId)
+                {
+                    @Html.Label("Exercito Branco")
+                }
+                else if (item.TurnoId != item.ExercitoBrancoId)
+                {
+                    @Html.Label("Exercito Preto")
+                }
+            </td>
+            <td>
+                @*O vencedor só pode aparecer se o estado da partida for 'Finalizado'*@
+                @if (item.Vencedor != null)
+                {
+                    @Html.DisplayFor(modelItem => item.Vencedor.Usuario.Email)
+                }
+                else
+                {
+                    @Html.Label("-")
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @if (item.Estado == JogosDeGuerraModel.Batalha.EstadoBatalhaEnum.NaoIniciado)
+                {
+                    @Html.ActionLink("Iniciar Batalha", "Iniciar", new { id = item.Id }) 
+                    @Html.Label("|")
+                }
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+<button type="button" class="btn btn-primary" onclick="criarBatalha()">Nova Batalha</button>
+
+@section MeusScripts{
+    <script type="text/javascript">
+        function showError(jqXHR) {
+
+            alert("Olá Erro!");
+            var response = jqXHR.responseJSON;
+            if (response) {
+                if (response.Message) self.errors.push(response.Message);
+                if (response.ModelState) {
+                    var modelState = response.ModelState;
+                    for (var prop in modelState) {
+                        if (modelState.hasOwnProperty(prop)) {
+                            var msgArr = modelState[prop]; // expect array here
+                            if (msgArr.length) {
+                                for (var i = 0; i < msgArr.length; ++i) self.errors.push(msgArr[i]);
+                            }
+                        }
+                    }
+                }
+                if (response.error) self.errors.push(response.error);
+                if (response.error_description) self.errors.push(response.error_description);
+            }
+        }
+
+
+        function criarBatalha() {
+            var baseUrl =
+                window.location.protocol +
+                "//" +
+                window.location.hostname +
+                (window.location.port ? ':' + window.location.port : '');
+            var token = sessionStorage.getItem("accessToken");
+            var headers = {};
+            if (token) {
+                headers.Authorization = token;
+            }
+            var urlIniciarBatalha = baseUrl + "/api/Batalhas/Iniciar?Id=2";
+            $.ajax({
+                type: 'GET',
+                url: baseUrl + '/api/Batalhas/CriarNovaBatalha?Nacao=1',
+                headers: headers
+            }).done(function (data) {
+                alert("Criada com Sucesso!");
+                location.reload();
+            }).fail(showError);
+        }
+
+    </script>
+}
