@@ -52,26 +52,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractFactoryExercito.cs" />
-    <Compile Include="Arqueiro.cs" />
-    <Compile Include="ArqueiroEgipicio.cs" />
-    <Compile Include="ArqueiroIndiano.cs" />
-    <Compile Include="ArqueiroPersa.cs" />
+    <Compile Include="Exercitos\Arqueiros\Arqueiro.cs" />
+    <Compile Include="Exercitos\Arqueiros\ArqueiroEgipicio.cs" />
+    <Compile Include="Exercitos\Arqueiros\ArqueiroIndiano.cs" />
+    <Compile Include="Exercitos\Arqueiros\ArqueiroPersa.cs" />
     <Compile Include="Batalha.cs" />
-    <Compile Include="Cavaleiro.cs" />
-    <Compile Include="CavaleiroEgipicia.cs" />
-    <Compile Include="CavaleiroIndiana.cs" />
-    <Compile Include="CavaleiroPersa.cs" />
-    <Compile Include="ElementoDoExercito.cs" />
+    <Compile Include="Exercitos\Cavalarias\Cavaleiro.cs" />
+    <Compile Include="Exercitos\Cavalarias\CavaleiroEgipicia.cs" />
+    <Compile Include="Exercitos\Cavalarias\CavaleiroIndiana.cs" />
+    <Compile Include="Exercitos\Cavalarias\CavaleiroPersa.cs" />
+    <Compile Include="Exercitos\ElementoDoExercito.cs" />
     <Compile Include="Exercito.cs" />
     <Compile Include="FactoryExercitoIndiano.cs" />
     <Compile Include="FactoryExercitoPersa.cs" />
-    <Compile Include="Guerreiro.cs" />
-    <Compile Include="GuerreiroEgipicio.cs" />
-    <Compile Include="GuerreiroIndiano.cs" />
-    <Compile Include="GuerreiroPersa.cs" />
+    <Compile Include="Exercitos\Guerreiros\Guerreiro.cs" />
+    <Compile Include="Exercitos\Guerreiros\GuerreiroEgipicio.cs" />
+    <Compile Include="Exercitos\Guerreiros\GuerreiroIndiano.cs" />
+    <Compile Include="Exercitos\Guerreiros\GuerreiroPersa.cs" />
     <Compile Include="Migrations\201811221108216_22.11.cs" />
     <Compile Include="Migrations\201811221108216_22.11.Designer.cs">
       <DependentUpon>201811221108216_22.11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811290219554_ImageHandler.cs" />
+    <Compile Include="Migrations\201811290219554_ImageHandler.Designer.cs">
+      <DependentUpon>201811290219554_ImageHandler.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelJogosDeGuerra.cs" />
@@ -88,6 +92,12 @@
     <EmbeddedResource Include="Migrations\201811221108216_22.11.resx">
       <DependentUpon>201811221108216_22.11.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811290219554_ImageHandler.resx">
+      <DependentUpon>201811290219554_ImageHandler.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Nacoes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

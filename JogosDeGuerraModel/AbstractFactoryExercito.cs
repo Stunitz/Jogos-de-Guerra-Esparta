@@ -28,11 +28,11 @@ namespace JogosDeGuerraModel
             AbstractFactoryExercito factory = null;
             if (nacionalidade == Nacao.Persia)
             {
-                factory = null;
+                factory = new FactoryExercitoPersa();
             }
             else if (Nacao.Egito == nacionalidade)
             {
-                factory = new FactoryExercitoPersa();
+                // factory = new FactoryExercitoEgipcio();
             }
             else if (Nacao.India == nacionalidade)
             {

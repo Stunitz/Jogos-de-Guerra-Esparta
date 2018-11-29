@@ -78,6 +78,7 @@ namespace JogosDeGuerraWebAPI.Controllers
         public Batalha IniciarBatalha(int id)
         {
             var usuario = Utils.Utils.ObterUsuarioLogado(ctx);
+
             var batalha = ctx.Batalhas
                 .Include(b => b.ExercitoPreto)
                 .Include(b => b.ExercitoBranco)
@@ -85,10 +86,10 @@ namespace JogosDeGuerraWebAPI.Controllers
                 .Include(b => b.Turno)
                 .Include(b => b.Turno.Usuario)
                 .Where(b => 
-                (b.ExercitoBranco.Usuario.Email == usuario.Email 
-                || b.ExercitoPreto.Usuario.Email == usuario.Email)
-                && ( b.ExercitoBranco != null && b.ExercitoPreto != null) 
-                && b.Id == id ).FirstOrDefault();
+                    (b.ExercitoBranco.Usuario.Email == usuario.Email 
+                    || b.ExercitoPreto.Usuario.Email == usuario.Email)
+                    && ( b.ExercitoBranco != null && b.ExercitoPreto != null) 
+                    && b.Id == id ).FirstOrDefault();
             if (batalha == null)
             {
                 var resp = new HttpResponseMessage(HttpStatusCode.NotFound)

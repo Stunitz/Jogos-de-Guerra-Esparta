@@ -48,12 +48,12 @@ namespace JogosDeGuerraModel
         public ElementoDoExercito ObterElemento(Posicao p)
         {
             return this.ElementosDoExercito
-                .Where(e => e.posicao == p)
+                .Where(e => e.Posicao == p)
                 .FirstOrDefault();
         }
         public Posicao ObterPosicao(ElementoDoExercito elemento)
         {
-            return elemento.posicao;
+            return elemento.Posicao;
         }
 
         public void IniciarJogo(Exercito exercito1, Exercito exercito2)
@@ -91,7 +91,7 @@ namespace JogosDeGuerraModel
                     {
 
                         exercito.Elementos.Add(elemento);
-                        elemento.posicao = new Posicao(i, j);
+                        elemento.Posicao = new Posicao(i, j);
                         elemento.Tabuleiro = this;
 //                        this.Casas.Add(elemento.posicao, elemento);
                     }
@@ -105,7 +105,7 @@ namespace JogosDeGuerraModel
         {
             //this.Casas[ObterPosicao(movimento.Elemento)] = null;
             //this.Casas[movimento.posicao] = movimento.Elemento;
-            movimento.Elemento.posicao = movimento.posicao;
+            movimento.Elemento.Posicao = movimento.posicao;
         }
     }
 }
