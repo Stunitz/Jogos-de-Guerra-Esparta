@@ -8,6 +8,6 @@
         /// <summary>
         /// O caminho de onde a imagem que representara um arqueiro egipicio no servidor
         /// </summary>
-        public override string UriImagem { get; protected set; } = "/Images/arqueiro_egito_1.png";
+        public override string UriImagem { get; protected set; } = "/Images/PNG/EGITO/dir/arqueiro_indiano_dir.png";
     }
 }

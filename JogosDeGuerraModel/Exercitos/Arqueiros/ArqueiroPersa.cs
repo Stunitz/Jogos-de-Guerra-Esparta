@@ -8,6 +8,6 @@
         /// <summary>
         /// O caminho de onde a imagem que representara um arqueiro persa no servidor
         /// </summary>
-        public override string UriImagem { get; protected set; } = "/Images/arqueiro_persa_1.png";
+        public override string UriImagem { get; protected set; } = "/Images/PNG/PERSA/direita/arqueiro_persa_dir.png";
     }
 }

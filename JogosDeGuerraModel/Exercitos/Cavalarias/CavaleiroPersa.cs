@@ -8,6 +8,6 @@
         /// <summary>
         /// O caminho de onde a imagem que representara um cavaleiro persa no servidor
         /// </summary>
-        public override string UriImagem { get; protected set; } = "/Images/cavaleiro_persa_1.png";
+        public override string UriImagem { get; protected set; } = "/Images/PNG/PERSA/direita/cavaleiro_persa_dir.png";
     }
 }

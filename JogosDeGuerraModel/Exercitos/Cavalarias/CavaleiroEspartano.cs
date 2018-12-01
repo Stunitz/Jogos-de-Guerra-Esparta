@@ -8,6 +8,6 @@
         /// <summary>
         /// O caminho de onde a imagem que representara um cavaleiro egipicio no servidor
         /// </summary>
-        public override string UriImagem { get; protected set; } = "/Images/cavaleiro_egito_1.jpg";
+        public override string UriImagem { get; protected set; } = "/Images/PNG/ESPARTA/dir/cavalaria_dir.png";
     }
 }

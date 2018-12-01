@@ -127,7 +127,7 @@
             var urlIniciarBatalha = baseUrl + "/api/Batalhas/Iniciar?Id=2";
             $.ajax({
                 type: 'GET',
-                url: baseUrl + '/api/Batalhas/CriarNovaBatalha?Nacao=' + (Math.floor(Math.random() * (3 + 1))),
+                url: baseUrl + '/api/Batalhas/CriarNovaBatalha?Nacao=' + 3,
                 headers: headers
             }).done(function (data) {
                 alert("Criada com Sucesso!");

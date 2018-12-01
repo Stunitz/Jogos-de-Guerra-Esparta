@@ -14,7 +14,7 @@ namespace JogosDeGuerraModel
 
         public GuerreiroPersa()
         {
-            UriImagem = $"/Images/guerreiro_persa_{new Random().Next(1, 3)}.png";
+            UriImagem = $"/Images/PNG/PERSA/direita/guerreiro_persa.png";
         }
     }
 }

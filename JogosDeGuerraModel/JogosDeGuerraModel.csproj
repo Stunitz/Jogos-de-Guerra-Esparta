@@ -82,6 +82,10 @@
     <Compile Include="Migrations\201811290219554_ImageHandler.Designer.cs">
       <DependentUpon>201811290219554_ImageHandler.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812012102392_teste1.cs" />
+    <Compile Include="Migrations\201812012102392_teste1.Designer.cs">
+      <DependentUpon>201812012102392_teste1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelJogosDeGuerra.cs" />
     <Compile Include="Usuario.cs" />
@@ -99,6 +103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811290219554_ImageHandler.resx">
       <DependentUpon>201811290219554_ImageHandler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812012102392_teste1.resx">
+      <DependentUpon>201812012102392_teste1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

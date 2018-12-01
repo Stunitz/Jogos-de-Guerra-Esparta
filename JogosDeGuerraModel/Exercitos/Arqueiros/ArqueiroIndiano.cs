@@ -8,6 +8,6 @@
         /// <summary>
         /// O caminho de onde a imagem que representara um arqueiro indiano no servidor
         /// </summary>
-        public override string UriImagem { get; protected set; } = "/Images/arqueiro_indiano_1.jpg";
+        public override string UriImagem { get; protected set; } = "/Images/PNG/INDIANO/dir/arqueiro_indiano_dir.png";
     }
 }

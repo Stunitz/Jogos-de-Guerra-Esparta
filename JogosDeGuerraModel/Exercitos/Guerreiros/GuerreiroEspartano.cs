@@ -8,6 +8,6 @@
         /// <summary>
         /// O caminho de onde a imagem que representara um guerreiro egipicio no servidor
         /// </summary>
-        public override string UriImagem { get; protected set; } = "/Images/guerreiro_egito_1.png";
+        public override string UriImagem { get; protected set; } = "/Images/PNG/ESPARTA/dir/guerreiro_esparta_dir.png";
     }
 }

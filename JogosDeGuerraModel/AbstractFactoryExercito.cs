@@ -32,7 +32,7 @@ namespace JogosDeGuerraModel
             }
             else if (Nacao.Egito == nacionalidade)
             {
-                // factory = new FactoryExercitoEgipcio();
+                 factory = new FactoryExercitoEgipcio();
             }
             else if (Nacao.India == nacionalidade)
             {
@@ -40,7 +40,7 @@ namespace JogosDeGuerraModel
             }
             else if (Nacao.Esparta == nacionalidade)
             {
-                factory = new FactoryExercitoEsparta);
+                factory = new FactoryExercitoEspartano();
             }
             return factory;
         }
