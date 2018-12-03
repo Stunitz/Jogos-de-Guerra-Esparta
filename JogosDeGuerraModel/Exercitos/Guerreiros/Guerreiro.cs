@@ -37,7 +37,7 @@ namespace JogosDeGuerraModel
         /// <summary>
         /// O caminho de onde a imagem que representara um guerreiro no servidor
         /// </summary>
-        public abstract string UriImagem { get; protected set; }
+        public abstract override string UriImagem { get; protected set; }
 
 
         #endregion

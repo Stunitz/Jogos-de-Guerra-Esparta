@@ -11,10 +11,14 @@
         <li>Peca selecionada: <span id="info_peca_selecionada" /></li>
     </ul>
 </div>
-
 @Styles.Render("~/Content/TabuleiroEstilo.css")
 @section MeusScripts{
     <script src="~/Scripts/Tabuleiro.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var batalhaId = @Html.Raw(Json.Encode(ViewBag.Id));
+            ObterBatalha(batalhaId);
+        });
+    </script>
 }
-
 

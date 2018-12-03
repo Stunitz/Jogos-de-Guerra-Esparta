@@ -1,22 +1,17 @@
 ﻿@model JogosDeGuerraModel.Batalha
-
 @{
     ViewBag.Title = "Edit";
 }
-
 <h2>Edit</h2>
-
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Batalha</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
-
         <div class="form-group">
             @Html.LabelFor(model => model.TabuleiroId, "TabuleiroId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -24,7 +19,6 @@
                 @Html.ValidationMessageFor(model => model.TabuleiroId, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.ExercitoBrancoId, "ExercitoBrancoId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -32,7 +26,6 @@
                 @Html.ValidationMessageFor(model => model.ExercitoBrancoId, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.ExercitoPretoId, "ExercitoPretoId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -40,7 +33,6 @@
                 @Html.ValidationMessageFor(model => model.ExercitoPretoId, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.VencedorId, "VencedorId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -48,7 +40,6 @@
                 @Html.ValidationMessageFor(model => model.VencedorId, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.TurnoId, "TurnoId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -56,7 +47,6 @@
                 @Html.ValidationMessageFor(model => model.TurnoId, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -64,7 +54,6 @@
                 @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
@@ -72,11 +61,6 @@
         </div>
     </div>
 }
-
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

@@ -1,68 +1,77 @@
-﻿using System;
+﻿using System.Linq;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JogosDeGuerraModel
 {
+    /// <summary>
+    /// Esta sera a estrutura de um tabuleiro no jogo
+    /// </summary>
+    [DataContract(IsReference = true)]
     public class Tabuleiro
     {
-        public override bool Equals(object obj)
-        {
-            if (obj is Tabuleiro)
-                return ((Tabuleiro)obj).Id == this.Id;
-            return false;
-        }
+        #region Public Properties
 
-        public override int GetHashCode()
-        {
-            return this.Id.GetHashCode();
-        }
+        /// <summary>
+        /// Este sera o indetificador de um tabuleiro
+        /// </summary>
+        [DataMember]
         public int Id { get; set; }
+
+        /// <summary>
+        /// Esta é a largura em posicoes que o tabuleiro ira ter
+        /// </summary>
+        [DataMember]
         public int Largura { get; set; }
 
+        /// <summary>
+        /// Esta é a altura em posicoes que o tabuleiro ira ter
+        /// </summary>
+        [DataMember]
         public int Altura { get; set; }
-        /*
-        //Não Gerenciado pela EF
-        private Dictionary<Posicao, ElementoDoExercito> _Casas = null;
-        //Não Gerenciado pela EF
-        private Dictionary<Posicao, ElementoDoExercito> Casas { get {
-                if(_Casas == null)
-                {
-                    _Casas = new Dictionary<Posicao, ElementoDoExercito>();
-                    foreach(ElementoDoExercito el in this.ElementosDoExercito)
-                    {
-                        this.Casas.Add(el.posicao, el);
-                    }
-                }
-                return _Casas;
-            }
-        }  
-        */
-        
+
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Os elementos que estao posiciodados dentro do tabuleiro
+        /// </summary>
+        [DataMember]
         [InverseProperty("Tabuleiro")]
         public ICollection<ElementoDoExercito> ElementosDoExercito { get; set; }
 
+        /// <summary>
+        /// Procura por um elemento em uma posicao dentro do tabuleiro
+        /// </summary>
+        /// <param name="p">A posicao que contem o elemento</param>
+        /// <returns>O elemento na posicao informada</returns>
         public ElementoDoExercito ObterElemento(Posicao p)
         {
             return this.ElementosDoExercito
-                .Where(e => e.Posicao == p)
+                .Where(e => e.Posicao.Equals(p))
                 .FirstOrDefault();
         }
+
+        /// <summary>
+        /// Procura por uma posicao no tabuleiro atraves de um elemento de um exercito
+        /// </summary>
+        /// <param name="elemento">O elemento de um exercito</param>
+        /// <returns>A posicao dele nesse tabuleiro</returns>
         public Posicao ObterPosicao(ElementoDoExercito elemento)
         {
             return elemento.Posicao;
         }
 
+        /// <summary>
+        /// Inicia o jogo com dois exercitos
+        /// </summary>
+        /// <param name="exercito1">Exercito um</param>
+        /// <param name="exercito2">Exercito dois</param>
         public void IniciarJogo(Exercito exercito1, Exercito exercito2)
         {
-            /*Casas = new ElementoDoExercito[Largura][];
-            for(int i = 0; i < this.Largura; i++){
-                this.Casas[i] = new ElementoDoExercito[Altura];
-            }*/
-
             for(int i=0; i< this.Largura; i++)
             {
                 for( int j=0; j< this.Altura; j++)
@@ -93,7 +102,7 @@ namespace JogosDeGuerraModel
                         exercito.Elementos.Add(elemento);
                         elemento.Posicao = new Posicao(i, j);
                         elemento.Tabuleiro = this;
-//                        this.Casas.Add(elemento.posicao, elemento);
+                        // this.Casas.Add(elemento.posicao, elemento);
                     }
 
 
@@ -101,11 +110,62 @@ namespace JogosDeGuerraModel
             }
         }
 
+        /// <summary>
+        /// Move um elemento do tabuleiro para uma nova posicao
+        /// </summary>
+        /// <param name="movimento"></param>
         internal void MoverElemento(Movimento movimento)
         {
             //this.Casas[ObterPosicao(movimento.Elemento)] = null;
             //this.Casas[movimento.posicao] = movimento.Elemento;
-            movimento.Elemento.Posicao = movimento.posicao;
+            movimento.Elemento.Posicao = movimento.Posicao;
         }
+
+        /// <summary>
+        /// Move um elemento do tabuleiro para uma nova posicao
+        /// </summary>
+        /// <param name="movimento"></param>
+        internal bool AtacarElemento(ElementoDoExercito agressor, ElementoDoExercito vitima)
+        {
+            vitima.Saude -= agressor.Ataque;
+            bool vitimaMorreu = vitima.Saude < 0;
+
+            if (vitimaMorreu)
+                vitima.Saude = 0;
+
+            this.ElementosDoExercito.ToList().ForEach(x =>
+            {
+                if (x.Id == vitima.Id)
+                    x = vitima;
+            });
+
+            return vitimaMorreu;
+        }
+
+
+        /// <summary>
+        /// Verifica se um objeto é esse tabuleiro
+        /// </summary>
+        /// <param name="obj">O objeto a ser verificado</param>
+        /// <returns>O resultado da verificação</returns>
+        public override bool Equals(object obj)
+        {
+            if (obj is Tabuleiro)
+                return ((Tabuleiro)obj).Id == this.Id;
+            return false;
+        }
+
+        /// <summary>
+        /// Retorna o HashCode dessa tabuleiro
+        /// </summary>
+        /// <returns>Um HashCode</returns>
+        public override int GetHashCode()
+        {
+            return this.Id.GetHashCode();
+        }
+
+
+        #endregion
     }
 }
+

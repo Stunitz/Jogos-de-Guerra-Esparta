@@ -1,38 +1,27 @@
 ﻿@model IEnumerable<JogosDeGuerraModel.Batalha>
-
 @{
     ViewBag.Title = "Index";
 }
-
 <h2>Index</h2>
-
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button type="button" onclick="CriarNovaBatalha(1)">Entrar em novo Jogo</button>
 </p>
 <table class="table">
-    @*Header*@
     <tr>
         <th>
-            Exercito Branco
+            @Html.DisplayName("Exercito Branco")
         </th>
         <th>
-            Exercito Preto
-        </th>
-        @*<th>
-                @Html.DisplayNameFor(model => model.Tabuleiro.Id)
-            </th>*@
-        <th>
-            Turno
+            @Html.DisplayName("Exercito Preto")
         </th>
         <th>
-            Vencedor
+            @Html.DisplayName("Turno")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Estado)
+            @Html.DisplayName("Estado")
         </th>
         <th></th>
     </tr>
-
     @foreach (var item in Model)
     {
         <tr>
@@ -42,53 +31,26 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ExercitoPreto.Usuario.Email)
             </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.Tabuleiro.Id)
-                </td>*@
             <td>
-                @if (item.Turno == null)
-                {
-                    @Html.Label("-")
-                }
-                else if (item.TurnoId == item.ExercitoBrancoId)
-                {
-                    @Html.Label("Exercito Branco")
-                }
-                else if (item.TurnoId != item.ExercitoBrancoId)
-                {
-                    @Html.Label("Exercito Preto")
-                }
-            </td>
-            <td>
-                @*O vencedor só pode aparecer se o estado da partida for 'Finalizado'*@
-                @if (item.Vencedor != null)
-                {
-                    @Html.DisplayFor(modelItem => item.Vencedor.Usuario.Email)
-                }
-                else
-                {
-                    @Html.Label("-")
-                }
+                @Html.DisplayFor(modelItem => item.Turno.Usuario.Email)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)
             </td>
             <td>
-                @if (item.Estado == JogosDeGuerraModel.Batalha.EstadoBatalhaEnum.NaoIniciado)
-                {
-                    @Html.ActionLink("Iniciar Batalha", "Iniciar", new { id = item.Id }) 
-                    @Html.Label("|")
-                }
+                @Html.ActionLink("Iniciar Batalha", "Tabuleiro", "BatalhasMVC", new { Id = item.Id }, null) |
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
     }
-
 </table>
-<button type="button" class="btn btn-primary" onclick="criarBatalha()">Nova Batalha</button>
 
-@section MeusScripts{
+    @section MeusScripts {
+        <script src="~/Scripts/Tabuleiro.js"></script>
+    }
+<!--
+
     <script type="text/javascript">
         function showError(jqXHR) {
 
@@ -127,7 +89,7 @@
             var urlIniciarBatalha = baseUrl + "/api/Batalhas/Iniciar?Id=2";
             $.ajax({
                 type: 'GET',
-                url: baseUrl + '/api/Batalhas/CriarNovaBatalha?Nacao=' + (Math.floor(Math.random() * (3 + 1))),
+                url: baseUrl + '/api/Batalhas/CriarNovaBatalha?Nacao=' + (Math.floor((Math.random() * 2) + 1)),
                 headers: headers
             }).done(function (data) {
                 alert("Criada com Sucesso!");
@@ -137,3 +99,5 @@
 
     </script>
 }
+
+-->

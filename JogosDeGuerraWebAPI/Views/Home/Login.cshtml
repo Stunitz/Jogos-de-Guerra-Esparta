@@ -1,34 +1,32 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Login";
 }
-<div class="container centered">
-    <div class="row">
-        <div class="col-sm-9 col-md-7 col-lg-4 col-lg-offset-4 mx-auto">
-            <div class="card card-signin my-5">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Sign In</h5>
-                    <form>
-                        <div style="background-color:red; color:white">
-                            @ViewBag.Message
-                        </div>
-                        <div class="form-label-group">
-                            <input type="email" id="loginEmail" class="form-control" placeholder="Email address" required autofocus>
-                            <label for="loginEmail" style="text-align:left" s>Email address</label>
-
-                        </div>
-                        <div class="form-label-group">
-                            <input type="password" id="loginPassword" class="form-control" placeholder="Password" required>
-                            <label for="loginPassword" style="text-align:left">Password</label>
-                        </div>                       
-                        <div>
-                            <button onclick="login()" class="btn btn-lg btn-primary btn-block text-uppercase" type="button">Sign in</button>
-                            
-                            <button onclick="logout()" class="btn btn-default btn-block text-uppercase">Log Out </button>
-                            
-                                @Html.ActionLink("Register", "Register")
-                        </div>
-                    </form>
+<div class="vertical-center">
+    <div class="container">
+        <div class="row">
+            <!--https://getbootstrap.com/docs/4.0/layout/grid/-->
+            <div class="col-sm-9 col-md-8 col-lg-5 col-md-offset-4 col-lg-3 col-sm-2">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Sign In</h5>
+                        <form>
+                            <div id="MensagemDiv" style="background:red; color:white; margin: 10px;">
+                                @ViewBag.Message
+                            </div>
+                            <div class="form-label-group">
+                                <input type="email" id="loginEmail" class="form-control" placeholder="Email address" required autofocus>
+                                <label for="loginEmail" style="text-align:left">Email address</label>
+                            </div>
+                            <div class="form-label-group">
+                                <input type="password" id="loginPassword" class="form-control" placeholder="Password" required>
+                                <label for="loginPassword" style="text-align:left">Password</label>
+                            </div>
+                            <div>
+                                <button onclick="login()" class="btn btn-lg btn-primary btn-block text-uppercase" type="button">Sign in</button>
+                                <button onclick="logout()" class="btn btn-lg btn-primary btn-block text-uppercase">Log Out</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -36,52 +34,45 @@
 </div>
 @Styles.Render("~/Content/Login.css")
 @section MeusScripts{
-<script type="text/javascript">
-    function showError(jqXHR) {
-
-        alert("Olá Erro!");
-        var response = jqXHR.responseJSON;
-        console.log(response);
-        if (response) {
-            if (response.Message) self.errors.push(response.Message);
-            if (response.ModelState) {
-                var modelState = response.ModelState;
-                for (var prop in modelState) {
-                    if (modelState.hasOwnProperty(prop)) {
-                        var msgArr = modelState[prop]; // expect array here
-                        if (msgArr.length) {
-                            for (var i = 0; i < msgArr.length; ++i) self.errors.push(msgArr[i]);
-                        }
-                    }
-                }
+    <script type="text/javascript">
+        $(document).keypress(function (e) {
+            if (e.which == 13) {
+                login();
+                e.preventDefault();
+                return false;
             }
-            if (response.error) self.errors.push(response.error);
-            if (response.error_description) self.errors.push(response.error_description);
+        });
+        function showError(jqXHR) {
+            var response = jqXHR.responseJSON;
+            var errorDescription = response.error_description;
+            var mensagemDiv = document.getElementById("MensagemDiv");
+            mensagemDiv.innerHTML = errorDescription;
         }
-    }
-    
-    
-    function login() {
-        var baseUrl =
-            window.location.protocol +
-            "//" +
-            window.location.hostname +
-            (window.location.port ? ':' + window.location.port : '');
-        var loginData = {
-            grant_type: 'password',
-            username: document.getElementById("loginEmail").value,
-            password: document.getElementById("loginPassword").value
-        };
-        $.ajax({
-            type: 'POST',
-            url: baseUrl +'/Token',
-            data: loginData
-        }).done(function (data) {
-            // Cache the access token in session storage.
-            sessionStorage.setItem('accessToken', data.token_type + " " + data.access_token);
-            sessionStorage.setItem('emailUsuario', data.userName);
-            window.location.href = baseUrl + "/BatalhasMVC/Index";
-        }).fail(showError);
-    }
-</script>
+        function logout() {
+            sessionStorage.clear();
+        }
+
+        function login() {
+            var baseUrl =
+                window.location.protocol +
+                "//" +
+                window.location.hostname +
+                (window.location.port ? ':' + window.location.port : '');
+            var loginData = {
+                grant_type: 'password',
+                username: document.getElementById("loginEmail").value,
+                password: document.getElementById("loginPassword").value
+            };
+            $.ajax({
+                type: 'POST',
+                url: baseUrl + '/Token',
+                data: loginData
+            }).done(function (data) {
+                // Cache the access token in session storage.
+                sessionStorage.setItem('accessToken', data.token_type + " " + data.access_token);
+                sessionStorage.setItem('emailUsuario', data.userName);
+                window.location.href = baseUrl + "/BatalhasMVC"
+            }).fail(showError);
+        }
+    </script>
 }
