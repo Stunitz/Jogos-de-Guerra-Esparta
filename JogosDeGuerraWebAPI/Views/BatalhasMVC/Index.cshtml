@@ -1,10 +1,12 @@
 ﻿@model IEnumerable<JogosDeGuerraModel.Batalha>
+@using System;
 @{
     ViewBag.Title = "Index";
+    ViewBag.Nacao = new Random().Next(1, 4);
 }
 <h2>Index</h2>
 <p>
-    <button type="button" onclick="CriarNovaBatalha(1)">Entrar em novo Jogo</button>
+    <button type="button" onclick="CriarNovaBatalha(@ViewBag.Nacao)">Entrar em novo Jogo</button>
 </p>
 <table class="table">
     <tr>

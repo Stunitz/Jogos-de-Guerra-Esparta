@@ -54,31 +54,31 @@ namespace JogosDeGuerraModel
         /// O alcance de movimento que essa unidade pode realizar, cada elemento devera implementar suas particularidades
         /// </summary>
         [DataMember]
-        public abstract int AlcanceMovimento {get; protected set;}
+        public virtual int AlcanceMovimento {get; protected set;}
 
         /// <summary>
         /// O alcance de ataque que essa unidade pode realizar, cada elemento devera implementar suas particularidades 
         /// </summary>
         [DataMember]
-        public abstract int AlcanceAtaque { get; protected set; }
+        public virtual int AlcanceAtaque { get; protected set; }
 
         /// <summary>
         /// O dano de ataque causado por essa unidade, cada elemento devera implementar suas particularidades 
         /// </summary>
         [DataMember]
-        public abstract int Ataque { get; protected set; }
+        public virtual int Ataque { get; protected set; }
 
         /// <summary>
         /// Esta sera o indicador de saude de um elemento, cada elemento devera implementar suas particularidades 
         /// </summary>
         [DataMember]
-        public abstract int Saude { get; set; }
+        public virtual int Saude { get; set; }
 
         /// <summary>
         /// O caminho de onde a imagem no servidor que representara um elemento
         /// </summary>
         [DataMember]
-        public abstract string UriImagem { get; protected set; }
+        public virtual string UriImagem { get; protected set; }
 
 
         #endregion

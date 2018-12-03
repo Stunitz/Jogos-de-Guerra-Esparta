@@ -119,6 +119,11 @@ namespace JogosDeGuerraModel
             //this.Casas[ObterPosicao(movimento.Elemento)] = null;
             //this.Casas[movimento.posicao] = movimento.Elemento;
             movimento.Elemento.Posicao = movimento.Posicao;
+            this.ElementosDoExercito.ToList().ForEach(x =>
+            {
+                if (x.Id == movimento.Elemento.Id)
+                    x = movimento.Elemento;
+            });
         }
 
         /// <summary>
@@ -132,11 +137,12 @@ namespace JogosDeGuerraModel
 
             if (vitimaMorreu)
                 vitima.Saude = 0;
+            
 
             this.ElementosDoExercito.ToList().ForEach(x =>
             {
                 if (x.Id == vitima.Id)
-                    x = vitima;
+                    x.Saude = vitima.Saude;
             });
 
             return vitimaMorreu;

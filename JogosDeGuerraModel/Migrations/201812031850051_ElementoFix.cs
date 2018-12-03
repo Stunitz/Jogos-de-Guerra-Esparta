@@ -3,7 +3,7 @@ namespace JogosDeGuerraModel.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class _2211 : DbMigration
+    public partial class ElementoFix : DbMigration
     {
         public override void Up()
         {
@@ -12,11 +12,15 @@ namespace JogosDeGuerraModel.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Saude = c.Int(nullable: false),
-                        posicao_Largura = c.Int(nullable: false),
-                        posicao_Altura = c.Int(nullable: false),
-                        TabuleiroId = c.Int(nullable: false),
                         ExercitoId = c.Int(nullable: false),
+                        TabuleiroId = c.Int(nullable: false),
+                        Posicao_Largura = c.Int(nullable: false),
+                        Posicao_Altura = c.Int(nullable: false),
+                        AlcanceMovimento = c.Int(nullable: false),
+                        AlcanceAtaque = c.Int(nullable: false),
+                        Ataque = c.Int(nullable: false),
+                        Saude = c.Int(nullable: false),
+                        UriImagem = c.String(),
                         Discriminator = c.String(nullable: false, maxLength: 128),
                         Exercito_Id = c.Int(),
                     })
@@ -24,8 +28,8 @@ namespace JogosDeGuerraModel.Migrations
                 .ForeignKey("dbo.Exercitoes", t => t.ExercitoId, cascadeDelete: true)
                 .ForeignKey("dbo.Tabuleiroes", t => t.TabuleiroId, cascadeDelete: true)
                 .ForeignKey("dbo.Exercitoes", t => t.Exercito_Id)
-                .Index(t => t.TabuleiroId)
                 .Index(t => t.ExercitoId)
+                .Index(t => t.TabuleiroId)
                 .Index(t => t.Exercito_Id);
             
             CreateTable(
@@ -114,8 +118,8 @@ namespace JogosDeGuerraModel.Migrations
             DropIndex("dbo.Exercitoes", new[] { "UsuarioId" });
             DropIndex("dbo.Exercitoes", new[] { "BatalhaId" });
             DropIndex("dbo.ElementoDoExercitoes", new[] { "Exercito_Id" });
-            DropIndex("dbo.ElementoDoExercitoes", new[] { "ExercitoId" });
             DropIndex("dbo.ElementoDoExercitoes", new[] { "TabuleiroId" });
+            DropIndex("dbo.ElementoDoExercitoes", new[] { "ExercitoId" });
             DropTable("dbo.Usuarios");
             DropTable("dbo.Tabuleiroes");
             DropTable("dbo.Batalhas");

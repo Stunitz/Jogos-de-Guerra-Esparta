@@ -205,87 +205,44 @@ namespace JogosDeGuerraWebAPI.Controllers
             movimento.Elemento = db.ElementosDoExercitos.Find(movimento.ElementoId);
 
             if (movimento.Elemento == null)
-            {
-                var resp = new HttpResponseMessage(HttpStatusCode.BadRequest)
-                {
-                    Content = new StringContent(String.Format("O Elemento não existe.")),
-                    ReasonPhrase = "O elemento informado para movimento não existe."
-                };
-                throw new HttpResponseException(resp);
-            }
+                ErroResponse(HttpStatusCode.BadRequest, "O Elemento não existe.", 
+                    "O elemento informado para movimento não existe.");
 
-            movimento.Batalha = 
-                db.Batalhas.Find(movimento.BatalhaId);
+            movimento.Batalha = db.Batalhas.Find(movimento.BatalhaId);
             var usuario = Utils.Utils.ObterUsuarioLogado(db);
 
             if (usuario.Id != movimento.AutorId)
-            {
-                var resp = new HttpResponseMessage(HttpStatusCode.Forbidden)
-                {
-                    Content = new StringContent(
-                        String
-                        .Format(
-                            "O usuário tentou executar uma ação como se fosse outro usuário.")),
-                    ReasonPhrase =
-                    "Você não tem permissão para executar esta ação."
-                };
-                throw new HttpResponseException(resp);
-            }
+                ErroResponse(HttpStatusCode.Forbidden, "O usuário tentou executar uma ação como se fosse outro usuário.",
+                    "Você não tem permissão para executar esta ação.");
 
             Batalha batalha = Get(movimento.BatalhaId);
 
             if (movimento.AutorId != movimento.Elemento.Exercito.UsuarioId)
-            {
-                var resp = new HttpResponseMessage(HttpStatusCode.Forbidden)
-                {
-                    Content = new StringContent(String.Format("A peça não pertence ao usuário.")),
-                    ReasonPhrase = "Não foi possível executar o movimento."
-                };
-                throw new HttpResponseException(resp);
-            }
+                ErroResponse(HttpStatusCode.Forbidden, "A peça não pertence ao usuário.", 
+                    "Não foi possível executar o movimento.");
 
             if (movimento.AutorId != batalha.Turno.UsuarioId)
-            {
-                var resp = new HttpResponseMessage(HttpStatusCode.Forbidden)
-                {
-                    Content = new StringContent(
-                        String
-                        .Format("O turno atual é do adversário.")),
-                    ReasonPhrase = "Você não tem permissão para executar esta ação."
-                };
-                throw new HttpResponseException(resp);
-            }
-
+                ErroResponse(HttpStatusCode.Forbidden, "O turno atual é do adversário.", 
+                    "Você não tem permissão para executar esta ação.");
+                
             if (!batalha.JogarMovimento(movimento))
-            {
-                var resp = new HttpResponseMessage(HttpStatusCode.BadRequest)
-                {
-                    Content = new StringContent(String.Format("Não foi possível executar o movimento.")),
-                    ReasonPhrase = "Não foi possível executar o movimento."
-                };
-                throw new HttpResponseException(resp);
-            }
+                ErroResponse(HttpStatusCode.BadRequest, "Não foi possível executar o movimento.", 
+                    "Não foi possível executar o movimento.");
+            
+            // branco = 1 preto = 2
+            // batalha.Tabuleiro = movimento.Batalha.Tabuleiro;
+            // batalha.ExercitoBranco.Elementos = movimento.Batalha.Tabuleiro.ElementosDoExercito.Where(x => x.ExercitoId == batalha.ExercitoBrancoId).ToList();
+            // batalha.ExercitoPreto.Elementos = movimento.Batalha.Tabuleiro.ElementosDoExercito.Where(x => x.ExercitoId == batalha.ExercitoPretoId).ToList();
 
-
-           // batalha.Tabuleiro = movimento.Batalha.Tabuleiro;
             batalha.Turno = null;
             batalha.TurnoId = batalha.TurnoId == batalha.ExercitoBrancoId ?
                 batalha.ExercitoPretoId : batalha.ExercitoBrancoId;
 
-            if (movimento.TipoMovimento == Movimento.EnumTipoMovimento.Atacar)
-            {
-                var oponente = movimento.Batalha.Tabuleiro.ObterElemento(movimento.Posicao);
-                var oponenteDb = db.ElementosDoExercitos.Find(oponente.Id);
-
-                oponenteDb.Saude -= movimento.Elemento.Ataque;
-
-                if (oponenteDb.Saude < 0) oponenteDb.Saude = 0;
-
-                db.Entry(oponenteDb).State = EntityState.Modified;
-            }
-
-
+            
+            // db.Entry(batalha).State = EntityState.Modified;
             db.SaveChanges();
+
+            var test = db.Batalhas.Find(movimento.BatalhaId);
 
             return batalha;
         }
@@ -329,6 +286,17 @@ namespace JogosDeGuerraWebAPI.Controllers
             return batalha.ExercitoBranco != null && batalha.ExercitoPreto != null;
         }
 
+
+        public void ErroResponse(HttpStatusCode httpStatus, string Content, string Reason)
+        {
+            var resp = new HttpResponseMessage(httpStatus)
+            {
+                Content = new StringContent(String.Format(Content)),
+                ReasonPhrase = Reason
+            };
+
+            throw new HttpResponseException(resp);
+        }
 
         #endregion
     }

@@ -74,17 +74,9 @@
     <Compile Include="Exercitos\Guerreiros\GuerreiroEgipicio.cs" />
     <Compile Include="Exercitos\Guerreiros\GuerreiroIndiano.cs" />
     <Compile Include="Exercitos\Guerreiros\GuerreiroPersa.cs" />
-    <Compile Include="Migrations\201811221108216_22.11.cs" />
-    <Compile Include="Migrations\201811221108216_22.11.Designer.cs">
-      <DependentUpon>201811221108216_22.11.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811290219554_ImageHandler.cs" />
-    <Compile Include="Migrations\201811290219554_ImageHandler.Designer.cs">
-      <DependentUpon>201811290219554_ImageHandler.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812012102392_teste1.cs" />
-    <Compile Include="Migrations\201812012102392_teste1.Designer.cs">
-      <DependentUpon>201812012102392_teste1.cs</DependentUpon>
+    <Compile Include="Migrations\201812031850051_ElementoFix.cs" />
+    <Compile Include="Migrations\201812031850051_ElementoFix.Designer.cs">
+      <DependentUpon>201812031850051_ElementoFix.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelJogosDeGuerra.cs" />
@@ -98,18 +90,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811221108216_22.11.resx">
-      <DependentUpon>201811221108216_22.11.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811290219554_ImageHandler.resx">
-      <DependentUpon>201811290219554_ImageHandler.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812012102392_teste1.resx">
-      <DependentUpon>201812012102392_teste1.cs</DependentUpon>
-    </EmbeddedResource>
+    <Folder Include="Nacoes\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Nacoes\" />
+    <EmbeddedResource Include="Migrations\201812031850051_ElementoFix.resx">
+      <DependentUpon>201812031850051_ElementoFix.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -239,13 +239,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810251421428_InitialCreate.cs" />
-    <Compile Include="Migrations\201810251421428_InitialCreate.Designer.cs">
-      <DependentUpon>201810251421428_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811061247525_EstadoBatalha-20181106.cs" />
-    <Compile Include="Migrations\201811061247525_EstadoBatalha-20181106.Designer.cs">
-      <DependentUpon>201811061247525_EstadoBatalha-20181106.cs</DependentUpon>
+    <Compile Include="Migrations\201812031859428_ElementoFix.cs" />
+    <Compile Include="Migrations\201812031859428_ElementoFix.Designer.cs">
+      <DependentUpon>201812031859428_ElementoFix.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -424,18 +420,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810251421428_InitialCreate.resx">
-      <DependentUpon>201810251421428_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811061247525_EstadoBatalha-20181106.resx">
-      <DependentUpon>201811061247525_EstadoBatalha-20181106.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201812031859428_ElementoFix.resx">
+      <DependentUpon>201812031859428_ElementoFix.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

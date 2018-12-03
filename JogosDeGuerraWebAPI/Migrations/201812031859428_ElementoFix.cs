@@ -3,7 +3,7 @@ namespace JogosDeGuerraWebAPI.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class ElementoFix : DbMigration
     {
         public override void Up()
         {
