@@ -54,15 +54,20 @@
     <Compile Include="AbstractFactoryExercito.cs" />
     <Compile Include="Exercitos\Arqueiros\Arqueiro.cs" />
     <Compile Include="Exercitos\Arqueiros\ArqueiroEgipicio.cs" />
+    <Compile Include="Exercitos\Arqueiros\ArqueiroEspartano.cs" />
     <Compile Include="Exercitos\Arqueiros\ArqueiroIndiano.cs" />
     <Compile Include="Exercitos\Arqueiros\ArqueiroPersa.cs" />
     <Compile Include="Batalha.cs" />
     <Compile Include="Exercitos\Cavalarias\Cavaleiro.cs" />
     <Compile Include="Exercitos\Cavalarias\CavaleiroEgipicia.cs" />
+    <Compile Include="Exercitos\Cavalarias\CavaleiroEspartano.cs" />
     <Compile Include="Exercitos\Cavalarias\CavaleiroIndiana.cs" />
     <Compile Include="Exercitos\Cavalarias\CavaleiroPersa.cs" />
     <Compile Include="Exercitos\ElementoDoExercito.cs" />
     <Compile Include="Exercito.cs" />
+    <Compile Include="Exercitos\Guerreiros\GuerreiroEspartano.cs" />
+    <Compile Include="FactoryExercitoEgipcio.cs" />
+    <Compile Include="FactoryExercitoEspartano.cs" />
     <Compile Include="FactoryExercitoIndiano.cs" />
     <Compile Include="FactoryExercitoPersa.cs" />
     <Compile Include="Exercitos\Guerreiros\Guerreiro.cs" />
@@ -76,6 +81,10 @@
     <Compile Include="Migrations\201811290219554_ImageHandler.cs" />
     <Compile Include="Migrations\201811290219554_ImageHandler.Designer.cs">
       <DependentUpon>201811290219554_ImageHandler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812012102392_teste1.cs" />
+    <Compile Include="Migrations\201812012102392_teste1.Designer.cs">
+      <DependentUpon>201812012102392_teste1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelJogosDeGuerra.cs" />
@@ -94,6 +103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811290219554_ImageHandler.resx">
       <DependentUpon>201811290219554_ImageHandler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812012102392_teste1.resx">
+      <DependentUpon>201812012102392_teste1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

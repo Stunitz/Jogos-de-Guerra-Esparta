@@ -14,7 +14,7 @@ namespace JogosDeGuerraModel
 
         public abstract Guerreiro CriarGuerreiro();
 
-        public enum Nacao { India=1, Persia=2, Egito=3};
+        public enum Nacao { India=1, Persia=2, Egito=3, Esparta=4};
 
         /// <summary>
         /// Este método é uma factory para a Abstract Factory.
@@ -32,11 +32,15 @@ namespace JogosDeGuerraModel
             }
             else if (Nacao.Egito == nacionalidade)
             {
-                // factory = new FactoryExercitoEgipcio();
+                 factory = new FactoryExercitoEgipcio();
             }
             else if (Nacao.India == nacionalidade)
             {
                 factory = new FactoryExercitoIndiano();
+            }
+            else if (Nacao.Esparta == nacionalidade)
+            {
+                factory = new FactoryExercitoEspartano();
             }
             return factory;
         }

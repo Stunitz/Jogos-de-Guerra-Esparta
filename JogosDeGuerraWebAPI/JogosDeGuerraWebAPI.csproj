@@ -269,18 +269,41 @@
     <Content Include="Content\TabuleiroEstilo.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Images\arqueiro_egito_1.png" />
-    <Content Include="Images\arqueiro_indiano_1.jpg" />
-    <Content Include="Images\arqueiro_persa_1.png" />
-    <Content Include="Images\cavaleiro_egipicio_1.jpg" />
-    <Content Include="Images\cavaleiro_indiano_1.jpg" />
-    <Content Include="Images\cavaleiro_persa_1.png" />
-    <Content Include="Images\guerreiro_egito_1.png" />
-    <Content Include="Images\guerreiro_egito_2.png" />
-    <Content Include="Images\guerreiro_indiano_1.png" />
-    <Content Include="Images\guerreiro_persa_1.png" />
-    <Content Include="Images\guerreiro_persa_2.png" />
-    <Content Include="Images\guerreiro_persa_3.png" />
+    <Content Include="Images\PNG\arqueiro_egito_1.png" />
+    <Content Include="Images\PNG\arqueiro_indiano_1.jpg" />
+    <Content Include="Images\PNG\cavaleiro_egipicio_1.jpg" />
+    <Content Include="Images\PNG\cavaleiro_indiano_1.jpg" />
+    <Content Include="Images\PNG\cavaleiro_persa.png" />
+    <Content Include="Images\PNG\cavaleiro_persa_1.png" />
+    <Content Include="Images\PNG\EGITO\dir\arqueiro_indiano_dir.png" />
+    <Content Include="Images\PNG\EGITO\dir\cavaleiro_egipcio_dir.png" />
+    <Content Include="Images\PNG\EGITO\dir\guerreiro_egipcio_dir.png" />
+    <Content Include="Images\PNG\EGITO\esq\arqueiro_indiano_esq.png" />
+    <Content Include="Images\PNG\EGITO\esq\cavaleiro_egipcio_esq.png" />
+    <Content Include="Images\PNG\EGITO\esq\guerreiro_egipcio_esq.png" />
+    <Content Include="Images\PNG\ESPARTA\dir\arqueiro_esparta_dir.png" />
+    <Content Include="Images\PNG\ESPARTA\dir\cavalaria_dir.png" />
+    <Content Include="Images\PNG\ESPARTA\dir\guerreiro_esparta_dir.png" />
+    <Content Include="Images\PNG\ESPARTA\esq\arqueiro_esparta_dir.png" />
+    <Content Include="Images\PNG\ESPARTA\esq\cavalaria_esq.png" />
+    <Content Include="Images\PNG\ESPARTA\esq\guerreiro_esparta_esq.png" />
+    <Content Include="Images\PNG\guerreiro_egito_2.png" />
+    <Content Include="Images\PNG\guerreiro_indiano_1.png" />
+    <Content Include="Images\PNG\guerreiro_persa_1.png" />
+    <Content Include="Images\PNG\guerreiro_persa_2.png" />
+    <Content Include="Images\PNG\guerreiro_persa_3.png" />
+    <Content Include="Images\PNG\INDIANO\dir\arqueiro_indiano_dir.png" />
+    <Content Include="Images\PNG\INDIANO\dir\cavaleiro_indiano_dir.png" />
+    <Content Include="Images\PNG\INDIANO\dir\guerreiro_indiano.png" />
+    <Content Include="Images\PNG\INDIANO\esq\arqueiro_indiano_esq.png" />
+    <Content Include="Images\PNG\INDIANO\esq\cavaleiro_indiano_esq.png" />
+    <Content Include="Images\PNG\INDIANO\esq\guerreiro_indiano.png" />
+    <Content Include="Images\PNG\PERSA\direita\arqueiro_persa_dir.png" />
+    <Content Include="Images\PNG\PERSA\direita\cavaleiro_persa_dir.png" />
+    <Content Include="Images\PNG\PERSA\direita\guerreiro_persa.png" />
+    <Content Include="Images\PNG\PERSA\esquerda\arqueiro_persa_esq.png" />
+    <Content Include="Images\PNG\PERSA\esquerda\cavaleiro_persa_esq.png" />
+    <Content Include="Images\PNG\PERSA\esquerda\guerreiro_persa.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -326,7 +349,6 @@
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\Cycle.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -446,7 +468,7 @@
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+      <ErrorText>Este projeto faz referência a pacotes do NuGet que não estão presentes neste computador. Use a Restauração de Pacotes do NuGet para baixá-los.  Para obter mais informações, consulte http://go.microsoft.com/fwlink/?LinkID=322105. O arquivo ausente é {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props'))" />

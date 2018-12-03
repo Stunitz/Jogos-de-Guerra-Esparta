@@ -8,6 +8,6 @@
         /// <summary>
         /// O caminho de onde a imagem que representara um cavaleiro indiano no servidor
         /// </summary>
-        public override string UriImagem { get; protected set; } = "/Images/cavaleiro_indiano_1.jpg";
+        public override string UriImagem { get; protected set; } = "/Images/PNG/INDIANO/dir/cavaleiro_indiano_dir.png";
     }
 }
