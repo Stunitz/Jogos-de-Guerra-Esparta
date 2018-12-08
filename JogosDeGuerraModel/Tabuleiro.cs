@@ -51,8 +51,7 @@ namespace JogosDeGuerraModel
         public ElementoDoExercito ObterElemento(Posicao p)
         {
             return this.ElementosDoExercito
-                .Where(e => e.Posicao.Equals(p))
-                .FirstOrDefault();
+                .Where(e => e.Posicao.Equals(p) && e.Saude > 0).FirstOrDefault();
         }
 
         /// <summary>
@@ -133,11 +132,17 @@ namespace JogosDeGuerraModel
         internal bool AtacarElemento(ElementoDoExercito agressor, ElementoDoExercito vitima)
         {
             vitima.Saude -= agressor.Ataque;
-            bool vitimaMorreu = vitima.Saude < 0;
+
+            return VerificarElementoVivo(vitima);
+        }
+
+        internal bool VerificarElementoVivo(ElementoDoExercito vitima)
+        {
+            bool vitimaMorreu = vitima.Saude <= 0;
 
             if (vitimaMorreu)
                 vitima.Saude = 0;
-            
+
 
             this.ElementosDoExercito.ToList().ForEach(x =>
             {
@@ -147,7 +152,6 @@ namespace JogosDeGuerraModel
 
             return vitimaMorreu;
         }
-
 
         /// <summary>
         /// Verifica se um objeto é esse tabuleiro
@@ -172,6 +176,39 @@ namespace JogosDeGuerraModel
 
 
         #endregion
+    }
+
+    public class FirebaseTabuleiro
+    {
+        public int Id { get; set; }
+
+        public int? TurnoId { get; set; }
+
+        public int Largura { get; set; }
+
+        public int Altura { get; set; }
+
+
+        public List<FirebaseElemento> Pecas { get; private set; }
+
+        public FirebaseTabuleiro(Tabuleiro tabuleiro, int? turnoId)
+        {
+            this.Id = tabuleiro.Id;
+            this.TurnoId = turnoId;
+            this.Largura = tabuleiro.Largura;
+            this.Altura = tabuleiro.Altura;
+            this.Pecas = tabuleiro.ElementosDoExercito.Select(x => new FirebaseElemento(x)).ToList();
+        }
+
+        public FirebaseTabuleiro()
+        {
+
+        }
+
+        public override string ToString()
+        {
+            return "Tabuleiros";
+        }
     }
 }
 

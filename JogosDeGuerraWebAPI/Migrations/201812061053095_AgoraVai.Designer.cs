@@ -7,13 +7,13 @@ namespace JogosDeGuerraWebAPI.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class ElementoFix : IMigrationMetadata
+    public sealed partial class AgoraVai : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ElementoFix));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AgoraVai));
         
         string IMigrationMetadata.Id
         {
-            get { return "201812031859428_ElementoFix"; }
+            get { return "201812061053095_AgoraVai"; }
         }
         
         string IMigrationMetadata.Source

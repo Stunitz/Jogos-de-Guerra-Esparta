@@ -22,12 +22,12 @@ namespace JogosDeGuerraWebAPI.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
+            
+            bool usuarioAutenticado = 
+                Utils.Utils.ObterUsuarioLogado(ctx) != null;
 
-            bool usuarioNaoAutenticado = 
-                Utils.Utils.ObterUsuarioLogado(ctx) == null;
-
-            if (usuarioNaoAutenticado)
-                return RedirectToAction("Login");
+            if (usuarioAutenticado)
+                return RedirectToAction("Index", "BatalhasMVC", null);
 
             return View();
         }

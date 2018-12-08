@@ -74,11 +74,6 @@
     <Compile Include="Exercitos\Guerreiros\GuerreiroEgipicio.cs" />
     <Compile Include="Exercitos\Guerreiros\GuerreiroIndiano.cs" />
     <Compile Include="Exercitos\Guerreiros\GuerreiroPersa.cs" />
-    <Compile Include="Migrations\201812031850051_ElementoFix.cs" />
-    <Compile Include="Migrations\201812031850051_ElementoFix.Designer.cs">
-      <DependentUpon>201812031850051_ElementoFix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelJogosDeGuerra.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Posicao.cs" />
@@ -91,11 +86,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Nacoes\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812031850051_ElementoFix.resx">
-      <DependentUpon>201812031850051_ElementoFix.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

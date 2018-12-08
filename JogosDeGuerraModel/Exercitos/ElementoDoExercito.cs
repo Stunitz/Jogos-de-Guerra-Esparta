@@ -122,5 +122,51 @@ namespace JogosDeGuerraModel
         // private num Tipo { Arqueiro = 1, Cavaleiro = 2, Guerreiro = 3 };
     }
 
+    public class FirebaseElemento
+    {
+        public int Id { get; private set; }
 
+        public int ExercitoId { get; private set; }
+
+        public int TabuleiroId { get; private set; }
+
+        public int PosicaoLargura { get; set; }
+
+        public int PosicaoAltura { get; set; }
+
+        public int Saude { get; set; }
+
+        public int AlcanceMovimento { get; private set; }
+
+        public int AlcanceAtaque { get; private set; }
+
+        public int Ataque { get; private set; }
+
+        public string UriImagem { get; private set; }
+
+
+        public FirebaseElemento(ElementoDoExercito peca)
+        {
+            this.Id = peca.Id;
+            this.ExercitoId = peca.ExercitoId;
+            this.TabuleiroId = peca.TabuleiroId;
+            this.Saude = peca.Saude;
+            this.AlcanceMovimento = peca.AlcanceMovimento;
+            this.AlcanceAtaque = peca.AlcanceAtaque;
+            this.Ataque = peca.Ataque;
+            this.UriImagem = peca.UriImagem;
+            this.PosicaoAltura = peca.Posicao.Altura;
+            this.PosicaoLargura = peca.Posicao.Largura;
+        }
+
+        public FirebaseElemento()
+        {
+
+        }
+
+        public override string ToString()
+        {
+            return "Peca";
+        }
+    }
 }

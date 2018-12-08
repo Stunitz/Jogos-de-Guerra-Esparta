@@ -4,102 +4,148 @@
     ViewBag.Title = "Index";
     ViewBag.Nacao = new Random().Next(1, 4);
 }
-<h2>Index</h2>
-<p>
-    <button type="button" onclick="CriarNovaBatalha(@ViewBag.Nacao)">Entrar em novo Jogo</button>
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayName("Exercito Branco")
-        </th>
-        <th>
-            @Html.DisplayName("Exercito Preto")
-        </th>
-        <th>
-            @Html.DisplayName("Turno")
-        </th>
-        <th>
-            @Html.DisplayName("Estado")
-        </th>
-        <th></th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExercitoBranco.Usuario.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExercitoPreto.Usuario.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Turno.Usuario.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
-            <td>
-                @Html.ActionLink("Iniciar Batalha", "Tabuleiro", "BatalhasMVC", new { Id = item.Id }, null) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
-</table>
+    <button  class="user-panel" type="submit" onclick="CriarNovaBatalha(@ViewBag.Nacao)">Entrar em novo Jogo</button>
+    <!-- Feature section -->
+    <section class="feature-section spad" style="background-image: url('../Images/review-bg.png');
+	background-position: right top;">
+        <div class="container">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-3 col-md-6 p-0">
+                        <div class="feature-item set-bg" data-setbg="https://cdnb.artstation.com/p/assets/images/images/000/371/727/large/shuqi-dang-w12.jpg?1419477081">
+                            <span class="cata new">@Html.DisplayFor(modelItem => item.Estado)</span>
+                            <div class="fi-content text-white">
+                                <h5>
+                                    <a href="#">
+                                        @Html.DisplayFor(modelItem => item.ExercitoBranco.Usuario.Email)<br />
+                                        VS<br />
+                                        @Html.DisplayFor(modelItem => item.ExercitoPreto.Usuario.Email)
+                                    </a>
+                                </h5>
+                                <p>TURNO: @Html.DisplayFor(modelItem => item.Turno.Usuario.Email)</p>
+                                @if (item.ExercitoBranco != null && item.ExercitoPreto != null)
+                                {
+                                    <a href="#" class="fi-comment">
+                                        @Html.ActionLink("Iniciar Batalha", "Tabuleiro", "BatalhasMVC", new { Id = item.Id }, null)
+                                    </a>
+                                }
+                                else { @Html.Display("Aguardando segundo jogador...") }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+    <!-- Feature section end -->
+    <!-- Latest news section -->
+    <div class="latest-news-section">
+        <div class="ln-title">Latest News</div>
+        <div class="news-ticker">
+            <div class="news-ticker-contant">
+                <div class="nt-item"><span class="new">new</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
+                <div class="nt-item"><span class="strategy">strategy</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
+                <div class="nt-item"><span class="racing">racing</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
+            </div>
+        </div>
+    </div>
+    <!-- Latest news section end -->
+
 
     @section MeusScripts {
         <script src="~/Scripts/Tabuleiro.js"></script>
     }
-<!--
+    <!--
 
-    <script type="text/javascript">
-        function showError(jqXHR) {
+        <script type="text/javascript">
+            function showError(jqXHR) {
 
-            alert("Olá Erro!");
-            var response = jqXHR.responseJSON;
-            if (response) {
-                if (response.Message) self.errors.push(response.Message);
-                if (response.ModelState) {
-                    var modelState = response.ModelState;
-                    for (var prop in modelState) {
-                        if (modelState.hasOwnProperty(prop)) {
-                            var msgArr = modelState[prop]; // expect array here
-                            if (msgArr.length) {
-                                for (var i = 0; i < msgArr.length; ++i) self.errors.push(msgArr[i]);
+                alert("Olá Erro!");
+                var response = jqXHR.responseJSON;
+                if (response) {
+                    if (response.Message) self.errors.push(response.Message);
+                    if (response.ModelState) {
+                        var modelState = response.ModelState;
+                        for (var prop in modelState) {
+                            if (modelState.hasOwnProperty(prop)) {
+                                var msgArr = modelState[prop]; // expect array here
+                                if (msgArr.length) {
+                                    for (var i = 0; i < msgArr.length; ++i) self.errors.push(msgArr[i]);
+                                }
                             }
                         }
                     }
+
+
+    <table class="table">
+        <tr>
+            <th>
+                Html.DisplayName("Exercito Branco")
+            </th>
+            <th>
+                Html.DisplayName("Exercito Preto")
+            </th>
+            <th>
+                Html.DisplayName("Turno")
+            </th>
+            <th>
+                Html.DisplayName("Estado")
+            </th>
+            <th></th>
+        </tr>
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    Html.DisplayFor(modelItem => item.ExercitoBranco.Usuario.Email)
+                </td>
+                <td>
+                    Html.DisplayFor(modelItem => item.ExercitoPreto.Usuario.Email)
+                </td>
+                <td>
+                    Html.DisplayFor(modelItem => item.Turno.Usuario.Email)
+                </td>
+                <td>
+                    Html.DisplayFor(modelItem => item.Estado)
+                </td
+                <td>
+                    Html.ActionLink("Iniciar Batalha", "Tabuleiro", "BatalhasMVC", new { Id = item.Id }, null) |
+                    Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </table>
+                    if (response.error) self.errors.push(response.error);
+                    if (response.error_description) self.errors.push(response.error_description);
                 }
-                if (response.error) self.errors.push(response.error);
-                if (response.error_description) self.errors.push(response.error_description);
             }
-        }
 
 
-        function criarBatalha() {
-            var baseUrl =
-                window.location.protocol +
-                "//" +
-                window.location.hostname +
-                (window.location.port ? ':' + window.location.port : '');
-            var token = sessionStorage.getItem("accessToken");
-            var headers = {};
-            if (token) {
-                headers.Authorization = token;
+            function criarBatalha() {
+                var baseUrl =
+                    window.location.protocol +
+                    "//" +
+                    window.location.hostname +
+                    (window.location.port ? ':' + window.location.port : '');
+                var token = sessionStorage.getItem("accessToken");
+                var headers = {};
+                if (token) {
+                    headers.Authorization = token;
+                }
+                var urlIniciarBatalha = baseUrl + "/api/Batalhas/Iniciar?Id=2";
+                $.ajax({
+                    type: 'GET',
+                    url: baseUrl + '/api/Batalhas/CriarNovaBatalha?Nacao=' + (Math.floor((Math.random() * 2) + 1)),
+                    headers: headers
+                }).done(function (data) {
+                    alert("Criada com Sucesso!");
+                    location.reload();
+                }).fail(showError);
             }
-            var urlIniciarBatalha = baseUrl + "/api/Batalhas/Iniciar?Id=2";
-            $.ajax({
-                type: 'GET',
-                url: baseUrl + '/api/Batalhas/CriarNovaBatalha?Nacao=' + (Math.floor((Math.random() * 2) + 1)),
-                headers: headers
-            }).done(function (data) {
-                alert("Criada com Sucesso!");
-                location.reload();
-            }).fail(showError);
-        }
 
-    </script>
-}
+        </script>
+    }
 
--->
+    -->

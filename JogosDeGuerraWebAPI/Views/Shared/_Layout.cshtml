@@ -1,42 +1,101 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- Metadata -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Jogos de Guerra Esparta">
+    <meta name="keywords" content="guerra, jogo, antiguidade">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="shortcut icon" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+
+    <!-- Stylesheets-->
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/font-awesome.min.css")
+    @Styles.Render("~/Content/owl.carousel.css")
+    @Styles.Render("~/Content/style.css")
+    @Styles.Render("~/Content/animate.css")
+
+    <!-- Javascript -->
     @Scripts.Render("~/bundles/modernizr")
+
+    <title>@ViewBag.Title</title>
 </head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header section -->
+    <header class="header-section">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Nome do aplicativo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <!-- logo -->
+            <a class="site-logo" href="/Home/Index">
+                <!-- <img src="~/Images/logo.png" alt=""> -->
+                <h4 style="color: white;">Jogos de Guerra Esparta</h4>
+            </a>
+            <div class="user-panel">
+                <a href="/Home/Login">Login</a>  /  <a href="/Home/Register">Register</a>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Início", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+            <!-- responsive -->
+            <div class="nav-switch">
+                <i class="fa fa-bars"></i>
+            </div>
+            <!-- site menu -->
+            <nav class="main-menu">
+                <ul>
                 </ul>
-            </div>
+            </nav>
         </div>
-    </div>
-    <div class="container body-content">
+    </header>
+    <!-- Header section end -->
+
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Meu Aplicativo ASP.NET</p>
-        </footer>
-    </div>
-    @Scripts.Render("~/bundles/jquery")  
+
+    <!-- Footer section -->
+    <footer class="footer-section">
+        <div class="container">
+            <ul class="footer-menu">
+                <li><a href="/Home/Index">Home</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+            <p class="copyright">
+                Copyright &copy;
+                @DateTime.Now.Year | Projeto feito por Stunitz Inc.
+            </p>
+        </div>
+    </footer>
+    <!-- Footer section end -->
+    <!--====== Javascripts & Jquery ======-->
+    <!-- Firebase App is always required and must be first -->
+    @Scripts.Render("https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js")
+    @Scripts.Render("https://www.gstatic.com/firebasejs/5.5.2/firebase-database.js")
+    @Scripts.Render("https://www.gstatic.com/firebasejs/5.6.0/firebase.js")
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBTZecQJwG2D5Pii46OlPvKTm3XA97EPbs",
+            authDomain: "jogosdeguerraesparta.firebaseapp.com",
+            databaseURL: "https://jogosdeguerraesparta.firebaseio.com",
+            projectId: "jogosdeguerraesparta",
+            storageBucket: "jogosdeguerraesparta.appspot.com",
+            messagingSenderId: "201744723770"
+        };
+        firebase.initializeApp(config);
+
+        var database = firebase.database();
+    </script>
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/owl.carousel.min.js")
+    @Scripts.Render("~/Scripts/jquery.marquee.min.js")
+    @Scripts.Render("~/Scripts/main.js")
     @RenderSection("scripts", required: false)
     @RenderSection("MeusScripts", required: false)
 </body>

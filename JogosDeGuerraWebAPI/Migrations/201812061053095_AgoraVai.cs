@@ -3,7 +3,7 @@ namespace JogosDeGuerraWebAPI.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class ElementoFix : DbMigration
+    public partial class AgoraVai : DbMigration
     {
         public override void Up()
         {

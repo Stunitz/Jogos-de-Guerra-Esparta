@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
@@ -149,6 +150,7 @@ namespace JogosDeGuerraModel
                             {
                                 //Caso seja 0 a batalha terminou.
                                 this.Estado = EstadoBatalhaEnum.Finalizado;
+
                                 //O vencedor é o autor do movimento.
                                 this.Vencedor = movimento.Autor;
                             }
@@ -172,6 +174,11 @@ namespace JogosDeGuerraModel
             return this.Id.GetHashCode();
         }
 
+        public override string ToString()
+        {
+            return "batalhas";
+        }
+        
 
         #endregion
     }

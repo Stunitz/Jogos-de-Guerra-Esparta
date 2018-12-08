@@ -23,6 +23,7 @@ namespace JogosDeGuerraWebAPI.Controllers
         /// Referencia do contexto do EntityFramework com o banco de dados
         /// </summary>
         private ModelJogosDeGuerra db = new ModelJogosDeGuerra();
+        private FirebaseService<FirebaseTabuleiro> firebase = new FirebaseService<FirebaseTabuleiro>();
 
         #endregion
 
@@ -122,9 +123,13 @@ namespace JogosDeGuerraWebAPI.Controllers
                     batalha.ExercitoPreto : batalha.ExercitoBranco;
 
                 batalha.Estado = Batalha.EstadoBatalhaEnum.Iniciado;
-            }
 
-            db.SaveChanges();
+                db.SaveChanges();
+
+                var firebaseTabuleiro = new FirebaseTabuleiro(batalha.Tabuleiro, batalha.TurnoId);
+                firebase.Add(firebaseTabuleiro, firebaseTabuleiro.Id);
+            }
+            
 
             return batalha;
         }
@@ -151,17 +156,22 @@ namespace JogosDeGuerraWebAPI.Controllers
             if (batalha == null)
             {
                 batalha = new Batalha();
-
                 db.Batalhas.AddOrUpdate(batalha);
                 db.SaveChanges();
+
+                // batalha.CriarBatalha(Nacao, usuarioLogado);
             }
+            // else
+            // {
+                batalha.CriarBatalha(Nacao, usuarioLogado);
 
-            batalha.CriarBatalha(Nacao, usuarioLogado);
+                // var firebaseTabuleiro = new FirebaseTabuleiro(batalha.Tabuleiro);
+                // firebase.Update(firebaseTabuleiro, firebaseTabuleiro.Id);
+            // }
+
+            
+
             db.Batalhas.AddOrUpdate(batalha);
-
-            //Não iria conseguir os Ids Corretos;
-            //ctx.SaveChangesAsync();
-
             db.SaveChanges();
             return batalha;
         }
@@ -229,54 +239,21 @@ namespace JogosDeGuerraWebAPI.Controllers
                 ErroResponse(HttpStatusCode.BadRequest, "Não foi possível executar o movimento.", 
                     "Não foi possível executar o movimento.");
             
-            // branco = 1 preto = 2
-            // batalha.Tabuleiro = movimento.Batalha.Tabuleiro;
-            // batalha.ExercitoBranco.Elementos = movimento.Batalha.Tabuleiro.ElementosDoExercito.Where(x => x.ExercitoId == batalha.ExercitoBrancoId).ToList();
-            // batalha.ExercitoPreto.Elementos = movimento.Batalha.Tabuleiro.ElementosDoExercito.Where(x => x.ExercitoId == batalha.ExercitoPretoId).ToList();
-
             batalha.Turno = null;
             batalha.TurnoId = batalha.TurnoId == batalha.ExercitoBrancoId ?
                 batalha.ExercitoPretoId : batalha.ExercitoBrancoId;
 
-            
-            // db.Entry(batalha).State = EntityState.Modified;
             db.SaveChanges();
 
-            var test = db.Batalhas.Find(movimento.BatalhaId);
+            var firebaseTabuleiro = new FirebaseTabuleiro(batalha.Tabuleiro, batalha.TurnoId);
+            firebase.Update(firebaseTabuleiro, firebaseTabuleiro.Id);
 
             return batalha;
         }
-
-
-
-        // POST: api/Batalhas
-        public void Post([FromBody]Batalha value)
-        {
-
-        }
-
+        
 
         #endregion
-
-        #region Put's
-
-
-        // PUT: api/Batalhas/5
-        public void Put(int id, [FromBody]Batalha value)
-        {
-        }
-
-        #endregion
-
-        #region Delete's
-
-        // DELETE: api/Batalhas/5
-        public void Delete(int id)
-        {
-        }
-
-        #endregion
-
+        
         #region Helpers Methods
         
 
